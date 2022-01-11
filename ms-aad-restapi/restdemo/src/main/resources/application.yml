@@ -1,0 +1,5 @@
+
+azure:
+  activedirectory:
+    client-id: <your-client-ID>
+    app-id-uri: <your-app-ID-URI>
