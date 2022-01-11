@@ -1,0 +1,10 @@
+@tenant = xxxx
+
+### Send ROPC call to get token https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth-ropc
+POST https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token
+Host: login.microsoftonline.com
+Content-Type: application/x-www-form-urlencoded
+
+client_id=
+&client_secret=
+&grant_type=password
