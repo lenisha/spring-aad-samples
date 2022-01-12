@@ -1,4 +1,4 @@
-# Connecting Spring with Azure AD
+# Securing Spring with Azure AD
 
 This repo contains two examples using Spring Boot REST API secured with Azure AD OAuth2
 
