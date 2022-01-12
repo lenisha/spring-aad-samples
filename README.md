@@ -115,8 +115,8 @@ Postman app allows for easy setup and tests for [Authorization Code grant](https
 ### Authorization Code Grant
 - Verify URLS in Authorization and obtain token
 
-![docs](/AuthCode_Settings.jpg)
-![docs](/AuthCode_AdvSettings.jpg)
+![docs](/AuthCodeSetting.jpg)
+![docs](/AuthCodeAdvanced.jpg)
 
 where:
 ```
@@ -170,8 +170,8 @@ Token will have `aud` set to app registration id for REST API (same as in applic
 ### Client Creds Code Grant
 - Verify settings Authorization and obtain token
 
-![docs](/ClientCredsSettings.jpg)
-![docs](/ClientCredsAdvSettings.jpg)
+![docs](/ClientCredSettings.jpg)
+![docs](/ClientCredAdvSettings.jpg)
 
 where:
 ```
@@ -210,8 +210,13 @@ Obtain the token  and decode it in `jwt.ms` you would see `SP token` for the cli
 
 ## Setting Scopes for the API
 
+You could choose to use Scopes vs Roles to do Coarse-Grained Authorization
 
+- Add Scope to REST API App Registration
+![docs](/AddScope.jpg)
 
+- Grant Permission to the Scope to Client App Registration
+![docs](/GrantScope.jpg)
 
 
 [Aquire Token for AD](https://docs.microsoft.com/en-us/azure/active-directory/develop/scenario-daemon-acquire-token?tabs=dotnet#azure-ad-v10-resources)
