@@ -1,5 +1,5 @@
 
 azure:
   activedirectory:
-    client-id: xxxx
-    app-id-uri: api://xxxx
+    client-id: <api client id>
+    app-id-uri: <api://client id> 
