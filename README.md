@@ -37,6 +37,10 @@ In our example here is the setup:
 ![docs](docs/clientapirole.jpg)
 
 
+- [Optionally] Add Role to the user to test Authorization Code Flow. Naviagte to Managed App and add user role
+![docs](docs/AddUserRole.jpg)
+
+
 ## Microsoft Spring Starter for Azure AD
 This example is using Microsoft Azure AD Spring Starter that implements all OIDC flows with AzureAD and hides any AAD setup complexity.
 [Microsft Azure AD SpringBoot Starter](./ms-aad-restapi)
@@ -99,6 +103,114 @@ Authorization: Bearer {{getToken.response.body.access_token}}
 GET http://localhost:8080/admin
 Authorization: Bearer {{getToken.response.body.access_token}}
 ```
+
+
+## Testing with Postman
+
+Postman app allows for easy setup and tests for [Authorization Code grant](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow) that issues tokens for users - useful for web applications that have authenticated end users and need to obtain token to call Rest API
+
+- Import Postma collection `ADTests.postman_collection.json` that has two flows AuthZ Code Grant and Client Credentials
+- Setup environment that would define your `appclient_id`, `appclient_secret`, `apiclient_id` and `tenantid`
+
+### Authorization Code Grant
+- Verify URLS in Authorization and obtain token
+
+![docs](/AuthCode_Settings.jpg)
+![docs](/AuthCode_AdvSettings.jpg)
+
+where:
+```
+- Authorization URL: https://login.microsoftonline.com/{{tenantid}}/oauth2/authorize
+- Token URL: https://login.microsoftonline.com/{{tenantid}}/oauth2/token
+- Grant Type: Authorization Code
+- ClientID and Secret are set to values for Application Client App Registration
+- [Optionally] Scope (see below the setup):  api://{{apiclient_id}}/Admin
+- Important!! Resource: points to REST API App Registration ID as it will be used in audience 
+```
+Obtain the token  and decode it in `jwt.ms` you would see `User token` for the currently authenticated user. It will ask for consent to grant if used by user first time.
+
+Refer to https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens#payload-claims for more details on token fields.
+Token will have `aud` set to app registration id for REST API (same as in application.yaml), `roles` with Roles associated with User. And optionally `scp` set to the requested scope (only avilable in user tokens)
+
+```
+{
+  "aud": "83ef8978-xxxx <apiclient-id used in resource field>",
+  "iss": "https://sts.windows.net/<tenantid>/",
+  "iat": 1642016283,
+  "nbf": 1642016283,
+  "exp": 1642020452,
+  "acr": "1",
+  "aio": "AXQAi/8TAAAAPUBBoB8/e1hNkutJ2eWul5qq2M+f9Lv+Ws/wo4rtW4BodOpDnuQMiKlajg8muugT/b5D2Oduu42Nflpf+0m+Bv+ZL8N+Bd4T9ueOxOgcf8yLYoFx0QGzuJ6YtXnUPm+nmHXNQa0jXqShRqpBdWQ19g==",
+  "amr": [
+    "pwd",
+    "rsa"
+  ],
+  "appid": "521d8346-xxxx <appclient-id>",
+  "appidacr": "1",
+  "email": "eneros@microsoft.com",
+  "idp": "https://sts.windows.net/tenant/",
+  "ipaddr": "76.78.16.222",
+  "name": "Elena Neroslavskaya",
+  "oid": "fc10c12d-xxxxx",
+  "rh": "0.AVEA-1rmm50Wt0W8wph-dDYql0aDHVId4mBMs_NAAvwUmBdRAMc.",
+  "roles": [
+    "AdminRole"
+  ],
+  "scp": "Admin",
+  "sub": "CSA-sQ-fxr1i7KPrDVzhpZ1FjPwRuIh_iE7HiUsagUk",
+  "tid": "tenant",
+  "unique_name": "eneros@microsoft.com",
+  "uti": "-HQQbKuUcESbh02S3vsSAA",
+  "ver": "1.0"
+}
+```
+
+- verify app endpoints `/echo`, `/admin` and `/adminscope` should work
+
+### Client Creds Code Grant
+- Verify settings Authorization and obtain token
+
+![docs](/ClientCredsSettings.jpg)
+![docs](/ClientCredsAdvSettings.jpg)
+
+where:
+```
+- Token URL: https://login.microsoftonline.com/{{tenantid}}/oauth2/token
+- Grant Type:Client Credentials
+- ClientID and Secret are set to values for Application Client App Registration
+- [Optionally] Scope (see below the setup):  api://{{apiclient_id}}/.default
+- Important!! Resource: points to REST API App Registration ID as it will be used in audience 
+```
+Obtain the token  and decode it in `jwt.ms` you would see `SP token` for the client application registration. 
+
+```json
+{
+  "aud": "83ef8978-xxx <apiclient_id>",
+  "iss": "https://sts.windows.net/tenant/",
+  "iat": 1642015217,
+  "nbf": 1642015217,
+  "exp": 1642019117,
+  "aio": "E2ZgYHjp/+BUtt60hJgPy+7lfPtsBgA=",
+  "appid": "521d8346-<appclient_id>",
+  "appidacr": "1",
+  "idp": "https://sts.windows.net/tenant/",
+  "oid": "7369daa6-3797-xxxx",
+  "rh": "0.AVEA-1rmm50Wt0W8wph-dDYql0aDHVId4mBMs_NAAvwUmBdRAAA.",
+  "roles": [
+    "AdminRole"
+  ],
+  "sub": "7369daa6-xxxx",
+  "tid": "tenant",
+  "uti": "Y8f51RHiZ0ON5klEqOkJAA",
+  "ver": "1.0"
+}
+```
+
+- verify app endpoints `/echo`, `/admin`  should work (scopes are not available in the client creds tokens)
+
+## Setting Scopes for the API
+
+
 
 
 

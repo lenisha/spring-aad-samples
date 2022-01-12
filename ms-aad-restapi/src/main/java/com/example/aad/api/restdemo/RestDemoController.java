@@ -23,6 +23,12 @@ public class RestDemoController {
         return "SP has admin success.";
     }
 
-    
+    @GetMapping("/adminscope")
+    @ResponseBody
+    @PreAuthorize("hasAuthority('SCOPE_Admin')")
+    public String adminscope() {
+        return "SP has admin Scope.";
+    }
+
 
 }
