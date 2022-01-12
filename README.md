@@ -3,7 +3,7 @@
 This repo contains two examples using Spring Boot REST API secured with Azure AD OAuth2
 
 - [Microsft Azure AD SpringBoot Starter](./ms-aad-restapi)
-- [Spring Securoty OAuth 2.0](./spring-security-restapi)
+- [Spring Security OAuth 2.0](./spring-security-restapi)
 
 Both examples provide libraries and integration to secure REST API (resource server in OAuth 2.0 jargon) with JWT Tokens.
 In both examples we will use same AzureAD app registrations and tests defined in `tests.http" are using client credentials grant to obtain the token and invoke API.
