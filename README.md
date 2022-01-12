@@ -59,7 +59,9 @@ This example provides code that is vendor neutral and is using Apringbott Securi
 
 In both examples we will use same AzureAD app registrations and tests defined in `tests.http" are using client credentials grant to obtain the token and invoke API. You will need to install  [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension in VSCode to run it.
 
-- To obtain Azure AD Token via client_credential flow [Client Credential Flow and default scope](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#client-credentials-grant-flow-and-default) we will use following HTTP request in `tests.http` (replace valueds for tenant and app registrations to your setup)
+- To obtain Azure AD Token via client_credential flow [Client Credential Flow and default scope](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#client-credentials-grant-flow-and-default) we will use following HTTP request in `tests.http` 
+- Replace values for tenant and app registrations in `tests.http` variables or you could optionally set the Rest Client Environment in vscode settings.json See https://courses.codewithandrea.com/courses/783023/lectures/14364306
+![docs](docs/RestEnv.jpg)
 
 
 ``` 
