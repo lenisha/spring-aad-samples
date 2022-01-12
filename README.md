@@ -71,12 +71,7 @@ Scope is always <resource app id>/.default for client_credentials , it will also
 You could verify content of the token at https://jwt.ms, our decoded token - you will see `roles` if granted to client application
 ```json
 {
-  "typ": "JWT",
-  "alg": "RS256",
-  "x5t": "Mr5-AUibfBii7Nd1jBebaxboXW0",
-  "kid": "Mr5-AUibfBii7Nd1jBebaxboXW0"
-}.{
-  "aud": "<apiclient_id>,
+  "aud": "<apiclient_id>",
   "iss": "https://sts.windows.net/<tenantid>/",
   "iat": 1641967979,
   "nbf": 1641967979,
@@ -94,7 +89,7 @@ You could verify content of the token at https://jwt.ms, our decoded token - you
   "tid": "<tenantid>",
   "uti": "vrxcAQO3UUiejUZa1Z6-AQ",
   "ver": "1.0"
-}.[Signature]
+}
 ```
 - Run Spring application `mvn spring-boot:run` and test endpoints ( you will receiev 403 in /admin if role not granted )
 ```
