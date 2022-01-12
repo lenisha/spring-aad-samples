@@ -1,10 +1,25 @@
-@tenant = xxxx
+//@tenant = <tenant id>
+//@apiclient_id= <api app id>
+//@appclient_id = <client app id>
+//@appclient_secret = <Secret for the client app>
 
-### Send ROPC call to get token https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth-ropc
+###
+# @name getToken
 POST https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token
 Host: login.microsoftonline.com
 Content-Type: application/x-www-form-urlencoded
 
-client_id=
-&client_secret=
-&grant_type=password
+client_id={{appclient_id}}
+&client_secret={{appclient_secret}}
+&grant_type=client_credentials
+&scope={{apiclient_id}}/.default
+&request_type=token
+
+
+### Send API request
+GET http://localhost:8080/echo
+Authorization: Bearer {{getToken.response.body.access_token}}
+
+### Send API request
+GET http://localhost:8080/admin
+Authorization: Bearer {{getToken.response.body.access_token}}

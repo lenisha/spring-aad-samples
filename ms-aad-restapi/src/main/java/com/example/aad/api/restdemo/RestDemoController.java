@@ -16,11 +16,11 @@ public class RestDemoController {
         return "Response from Secure App";
     }
 
-    @GetMapping("/user")
+    @GetMapping("/admin")
     @ResponseBody
-    @PreAuthorize("hasAuthority('SCOPE_MsRestDemo.Admin')")
+    @PreAuthorize("hasAuthority('APPROLE_AdminRole')")
     public String admin() {
-        return "User has admin success.";
+        return "SP has admin success.";
     }
 
     

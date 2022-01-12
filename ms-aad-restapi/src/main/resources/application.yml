@@ -1,1 +1,5 @@
 
+azure:
+  activedirectory:
+    client-id: xxxx
+    app-id-uri: api://xxxx
