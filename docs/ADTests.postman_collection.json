@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "49492689-0efc-44f5-b5c9-394b0aa515fe",
+		"name": "ADTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TestApp-AuthCodeGrant",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "scope",
+							"value": "api://{{apiclient_id}}/Admin",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "AADToken-Scope",
+							"type": "string"
+						},
+						{
+							"key": "resource",
+							"value": {
+								"2dc3abed-b764-4f92-a77d-b83529641d2d": "{{apiclient_id}}"
+							},
+							"type": "any"
+						},
+						{
+							"key": "clientSecret",
+							"value": "{{appclient_secret}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{appclient_id}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/{{tenantid}}/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://login.microsoftonline.com/{{tenantid}}/oauth2/token",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/adminscope",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"adminscope"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestApp-ClientCredGrant",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "scope",
+							"value": "api://{{apiclient_id}}/Admin",
+							"type": "string"
+						},
+						{
+							"key": "resource",
+							"value": {
+								"29c71062-fd9c-4411-aa85-4e21d3f2131d": "{{apiclient_id}}"
+							},
+							"type": "any"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "{{appclient_secret}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{appclient_id}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://login.microsoftonline.com/{{tenantid}}/oauth2/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/9be65afb-169d-45b7-bcc2-987e74362a97/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "AADToken",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
