@@ -47,4 +47,17 @@ and corresponding GitHub Repo [Azure Samples AAD SpringBoot](https://github.com/
 
  ```
 
+ - [Optionally] Set required SCOPES on the advances controller methods with Scope name prefixed with `SCOPE_`
+ 
+ ```java
+    @GetMapping("/adminscope")
+    @ResponseBody
+    @PreAuthorize("hasAuthority('SCOPE_Admin')")
+    public String adminscope() {
+        return "SP has admin Scope.";
+    }
+
+
+ ```
+
  - Run the app `mvn spring-boot:run` and test endpoints `/echo` and `/admin`
