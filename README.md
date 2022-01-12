@@ -8,6 +8,10 @@ This repo contains two examples using Spring Boot REST API secured with Azure AD
 Both examples provide libraries and integration to secure REST API (resource server in OAuth 2.0 jargon) with JWT Tokens.
 In both examples we will use same AzureAD app registrations and tests defined in `tests.http" are using client credentials grant to obtain the token and invoke API.
 
+- [Setup Azure API and Client App Registrations](#setup-azure-api-and-client-app-registrations)
+- [Microsoft Spring Starter for Azure AD](#microsoft-spring-starter-for-azure-ad)
+- [Spring Security with Azure AD](#spring-security-with-azure-ad)
+- [Testing with REST Client](#testing-with-rest-client)
 
 ## Setup Azure API and Client App Registrations
 
@@ -42,7 +46,7 @@ This example provides code that is vendor neutral and is using Apringbott Securi
 
 [Spring Security OAuth 2.0](./spring-security-restapi)
 
-### Testing with REST Client 
+## Testing with REST Client 
 
 In both examples we will use same AzureAD app registrations and tests defined in `tests.http" are using client credentials grant to obtain the token and invoke API. You will need to install  [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension in VSCode to run it.
 
@@ -65,7 +69,7 @@ Scope is always <resource app id>/.default for client_credentials , it will also
 ![docs](docs/accesstoken.jpg)
 
 You could verify content of the token at https://jwt.ms, our decoded token - you will see `roles` if granted to client application
-
+```json
 {
   "typ": "JWT",
   "alg": "RS256",
@@ -91,7 +95,7 @@ You could verify content of the token at https://jwt.ms, our decoded token - you
   "uti": "vrxcAQO3UUiejUZa1Z6-AQ",
   "ver": "1.0"
 }.[Signature]
-
+```
 - Run Spring application `mvn spring-boot:run` and test endpoints ( you will receiev 403 in /admin if role not granted )
 ```
 GET http://localhost:8080/echo
