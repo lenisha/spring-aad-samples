@@ -18,16 +18,18 @@ For this example we will simulate two components API Client and API REST Applica
 
 Follow the docs to 
 - [Register the App in AAD](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
-- [Add Roles to your applications](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-app-roles-to-applications)
+- [[Optionally] Add Roles to your applications](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-app-roles-to-applications)
 
 In our example here is the setup:
 
 - Create REST API App Registration `MSAADDemoAPI` and define a role `Admin` exposed by API
-![docs](/docs/apiclient.png)
+![docs](docs/appid.jpg.png)
+![docs](docs/apiclientrole.jpg)
 
-- Create Client App Registration `MSAADDemoAPIClient` and grant it role `Admin`
 
-![docs](/docs/apiclient.png)
+- Create Client App Registration `MSAADDemoAPIClient` , create secret and grant it role `Admin`
+
+![docs](docs/clientapirole.jpg)
 
 
 ## Microsoft Spring Starter for Azure AD
