@@ -13,8 +13,8 @@ In both examples we will use same AzureAD app registrations and tests defined in
 - [Spring Security with Azure AD](#spring-security-with-azure-ad)
 - [Testing with REST Client](#testing-with-rest-client)
 - [Testing with Postman](#testing-with-postman)
--- [Authorization Code Grant](#authorization-code-grant)
--- [Client Creds Code Grant](#client-creds-code-grant)
+  - [Authorization Code Grant](#authorization-code-grant)
+  - [Client Creds Code Grant](#client-creds-code-grant)
 - [Setting Scopes for the API](#setting-scopes-for-the-api)
 
 
